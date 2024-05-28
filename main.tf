@@ -7,7 +7,7 @@ data "azurerm_client_config" "current" {}
 variable "resource_group_name" {
   description = "The name of the resource group"
   type        = string
-  default     = "rg-terraform-assignment-group-131"
+  default     = "rg-terraform-assignment-group-13"
 }
 
 resource "azurerm_resource_group" "main" {
@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_storage_account" "main" {
-  name                     = "samlworkspacegroup131"
+  name                     = "samlworkspacegroup13"
   location                 = azurerm_resource_group.main.location
   resource_group_name      = azurerm_resource_group.main.name
   account_tier             = "Standard"
@@ -24,28 +24,28 @@ resource "azurerm_storage_account" "main" {
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "vnet-terraform-assignment-group-131"
+  name                = "vnet-terraform-assignment-group-13"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_subnet" "main" {
-  name                 = "subnet-terraform-assignment-group-131"
+  name                 = "subnet-terraform-assignment-group-13"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.1.0/24"]  # Adjust this according to your network requirements
 }
 
 resource "azurerm_public_ip" "main" {
-  name                = "public-ip-terraform-assignment-group-131"
+  name                = "public-ip-terraform-assignment-group-13"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   allocation_method   = "Dynamic"
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "nic-terraform-assignment-group-131"
+  name                = "nic-terraform-assignment-group-13"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
