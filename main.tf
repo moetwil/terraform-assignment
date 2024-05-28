@@ -34,7 +34,7 @@ resource "azurerm_subnet" "main" {
   name                 = "subnet-terraform-assignment-group-13"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefixes     = ["10.0.1.0/24"]  # Adjust this according to your network requirements
+  address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_public_ip" "main" {
@@ -67,8 +67,8 @@ resource "azurerm_linux_virtual_machine" "main" {
   name                  = "ml-workspace-group"
   resource_group_name   = azurerm_resource_group.main.name
   location              = azurerm_resource_group.main.location
-  size                  = "Standard_DS1_v2"  # Adjust this according to your VM size requirements
-  admin_username        = var.admin_username  # Use the declared variable here
+  size                  = "Standard_DS1_v2"
+  admin_username        = var.admin_username
   network_interface_ids = [azurerm_network_interface.main.id]
 
   os_disk {
@@ -84,21 +84,21 @@ resource "azurerm_linux_virtual_machine" "main" {
   }
 
   admin_ssh_key {
-    username   = var.admin_username  # Use the declared variable here
-    public_key = file("~/.ssh/id_rsa.pub")  # Path to your SSH public key file
+    username   = var.admin_username 
+    public_key = file("~/.ssh/id_rsa.pub") 
   }
 
 provisioner "remote-exec" {
   inline = [
     "sudo apt update",
     "sudo apt -y upgrade",
-    "sudo add-apt-repository -y ppa:deadsnakes/ppa",  # Added -y flag
+    "sudo add-apt-repository -y ppa:deadsnakes/ppa", 
     "sudo apt update",
-    "sudo apt install -y python3.9",  # Added -y flag
-    "sudo apt install -y python3.9-distutils",  # Added -y flag
+    "sudo apt install -y python3.9",
+    "sudo apt install -y python3.9-distutils", 
     "curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py",
     "sudo python3.9 get-pip.py",
-    "sudo apt install -y software-properties-common",  # Added -y flag
+    "sudo apt install -y software-properties-common",
     "sudo pip install pandas joblib scikit-learn==1.0.1",
     "mkdir -p /home/${var.admin_username}/machine-learning"
   ]
