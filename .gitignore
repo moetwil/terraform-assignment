@@ -159,8 +159,7 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# don't include .csv
-*.csv
+
 
 # don't include mac files
 .DS_Store
@@ -231,6 +230,3 @@ typings/
 
 # all .shp.zip files
 *.shp.zip
-
-api/data/uploads/*.zip
-!api/data/uploads/**/*.keep
